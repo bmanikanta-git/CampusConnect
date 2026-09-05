@@ -359,3 +359,70 @@ footer {
     }
 
 }
+/* Member 2 - Responsive UI Improvements */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .hero {
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .categories {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .events-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .event-card {
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .event-card {
+        padding: 15px;
+    }
+
+    .navbar {
+        padding: 10px;
+    }
+}
