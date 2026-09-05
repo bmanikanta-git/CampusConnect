@@ -301,7 +301,7 @@ footer {
 
 
 /* ================================
-   Responsive Design
+   Original Responsive Design
 ================================ */
 
 @media (max-width: 900px) {
@@ -322,44 +322,9 @@ footer {
 }
 
 
-@media (max-width: 600px) {
-
-    .navbar {
-        flex-direction: column;
-
-        gap: 15px;
-    }
-
-    .nav-links {
-        gap: 15px;
-
-        font-size: 14px;
-    }
-
-    .hero {
-        min-height: 400px;
-    }
-
-    .hero h1 {
-        font-size: 34px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    .category-grid,
-    .event-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .categories,
-    .events-section {
-        padding: 50px 5%;
-    }
-
-}
-/* Member 2 - Responsive UI Improvements */
+/* ================================
+   Member 2 - Responsive UI
+================================ */
 
 @media (max-width: 768px) {
 
@@ -393,7 +358,7 @@ footer {
         padding: 20px;
     }
 
-    .events-container {
+    .event-grid {
         grid-template-columns: 1fr;
         padding: 20px;
     }
@@ -408,6 +373,56 @@ footer {
     }
 }
 
+
+/* ================================
+   Small Mobile Devices
+================================ */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 15px;
+        font-size: 14px;
+    }
+
+    .hero {
+        min-height: 400px;
+        padding: 40px 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .category-grid,
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .categories,
+    .events-section {
+        padding: 50px 5%;
+    }
+
+    .event-card {
+        padding: 15px;
+    }
+}
+
+
+/* ================================
+   Extra Small Mobile Devices
+================================ */
+
 @media (max-width: 480px) {
 
     .hero h1 {
@@ -418,17 +433,19 @@ footer {
         font-size: 14px;
     }
 
-    .event-card {
-        padding: 15px;
-    }
-
     .navbar {
         padding: 10px;
     }
+
+    .nav-links {
+        gap: 8px;
+    }
 }
+
+
 /* =========================================
    MEMBER 3 - SEARCH AND EVENT DETAILS
-   ========================================= */
+========================================= */
 
 .event-controls {
     max-width: 1000px;
@@ -490,7 +507,9 @@ footer {
 }
 
 
-/* Event Details Popup */
+/* ================================
+   Event Details Popup
+================================ */
 
 .details-modal {
     display: none;
@@ -532,7 +551,9 @@ footer {
 }
 
 
-/* Mobile layout */
+/* ================================
+   Member 3 - Mobile Details
+================================ */
 
 @media (max-width: 600px) {
 
@@ -556,5 +577,4 @@ footer {
     .details-box {
         padding: 25px 20px;
     }
-
 }
