@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard - CampusConnect</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">CampusConnect</div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="dashboard.html">Dashboard</a>
+        </div>
+    </nav>
+
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+
+        <h1>Student Dashboard</h1>
+
+        <p>
+            Register for campus events and manage your registrations.
+        </p>
+
+    </section>
+
+
+    <!-- Registration Section -->
+    <section class="registration-section">
+
+        <div class="registration-card">
+
+            <h2>Register for an Event</h2>
+
+            <p class="form-description">
+                Enter your details and select an event to register.
+            </p>
+
+            <form id="registrationForm">
+
+                <div class="form-group">
+
+                    <label for="studentName">
+                        Student Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="studentEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="studentEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="rollNumber">
+                        Roll Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="rollNumber"
+                        placeholder="Enter your roll number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="eventSelect">
+                        Select Event
+                    </label>
+
+                    <select id="eventSelect" required>
+
+                        <option value="">
+                            -- Select an Event --
+                        </option>
+
+                        <option value="CodeSprint 2026">
+                            CodeSprint 2026
+                        </option>
+
+                        <option value="Campus Beats">
+                            Campus Beats
+                        </option>
+
+                        <option value="AI Future Lab">
+                            AI Future Lab
+                        </option>
+
+                        <option value="Inter College Cricket">
+                            Inter College Cricket
+                        </option>
+
+                        <option value="Web Development Bootcamp">
+                            Web Development Bootcamp
+                        </option>
+
+                        <option value="Photography Workshop">
+                            Photography Workshop
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="submit" class="btn">
+                    Register
+                </button>
+
+            </form>
+
+            <p id="registrationMessage" class="registration-message"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Statistics -->
+    <section class="statistics-section">
+
+        <h2>Registration Statistics</h2>
+
+        <div class="statistics-grid">
+
+            <div class="stat-card">
+                <h3 id="totalRegistrations">0</h3>
+                <p>Total Registrations</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="uniqueEvents">0</h3>
+                <p>Events Registered</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="studentCount">0</h3>
+                <p>Students</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Registered Events -->
+    <section class="registered-section">
+
+        <h2>My Registered Events</h2>
+
+        <p class="section-text">
+            Events you have registered for will appear here.
+        </p>
+
+        <div id="registeredEvents" class="registered-events">
+
+        </div>
+
+        <p id="emptyMessage" class="empty-message">
+            No registrations yet.
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 CampusConnect. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
