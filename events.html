@@ -64,6 +64,52 @@
     </section>
 
 
+    <!-- Search and Filter -->
+
+    <section class="event-controls">
+
+        <h2>
+            Find an Event
+        </h2>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search events..."
+        >
+
+        <div class="filter-buttons">
+
+            <button class="filter-btn active"
+                    data-category="All">
+                All
+            </button>
+
+            <button class="filter-btn"
+                    data-category="Technical">
+                Technical
+            </button>
+
+            <button class="filter-btn"
+                    data-category="Cultural">
+                Cultural
+            </button>
+
+            <button class="filter-btn"
+                    data-category="Sports">
+                Sports
+            </button>
+
+            <button class="filter-btn"
+                    data-category="Workshop">
+                Workshop
+            </button>
+
+        </div>
+
+    </section>
+
+
     <!-- Event List -->
 
     <section class="events-section">
@@ -77,10 +123,14 @@
         </p>
 
 
-        <div class="event-grid">
+        <div class="event-grid" id="eventGrid">
 
 
-            <div class="event-card">
+            <!-- Event 1 -->
+
+            <div class="event-card"
+                 data-category="Technical"
+                 data-title="CodeSprint 2026">
 
                 <div class="event-date">
                     SEPT 15
@@ -98,6 +148,10 @@
                     Coding challenge for students.
                 </p>
 
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
                 <a href="dashboard.html"
                    class="btn">
                     Register
@@ -106,7 +160,11 @@
             </div>
 
 
-            <div class="event-card">
+            <!-- Event 2 -->
+
+            <div class="event-card"
+                 data-category="Cultural"
+                 data-title="Campus Beats">
 
                 <div class="event-date">
                     SEPT 20
@@ -125,6 +183,10 @@
                     performances.
                 </p>
 
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
                 <a href="dashboard.html"
                    class="btn">
                     Register
@@ -133,7 +195,11 @@
             </div>
 
 
-            <div class="event-card">
+            <!-- Event 3 -->
+
+            <div class="event-card"
+                 data-category="Workshop"
+                 data-title="AI Future Lab">
 
                 <div class="event-date">
                     SEPT 25
@@ -152,6 +218,10 @@
                     emerging technologies.
                 </p>
 
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
                 <a href="dashboard.html"
                    class="btn">
                     Register
@@ -160,7 +230,11 @@
             </div>
 
 
-            <div class="event-card">
+            <!-- Event 4 -->
+
+            <div class="event-card"
+                 data-category="Sports"
+                 data-title="Inter College Cricket">
 
                 <div class="event-date">
                     SEPT 28
@@ -179,6 +253,10 @@
                     tournament.
                 </p>
 
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
                 <a href="dashboard.html"
                    class="btn">
                     Register
@@ -187,7 +265,11 @@
             </div>
 
 
-            <div class="event-card">
+            <!-- Event 5 -->
+
+            <div class="event-card"
+                 data-category="Technical"
+                 data-title="Web Development Bootcamp">
 
                 <div class="event-date">
                     OCT 2
@@ -206,6 +288,10 @@
                     modern web development.
                 </p>
 
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
                 <a href="dashboard.html"
                    class="btn">
                     Register
@@ -214,7 +300,11 @@
             </div>
 
 
-            <div class="event-card">
+            <!-- Event 6 -->
+
+            <div class="event-card"
+                 data-category="Workshop"
+                 data-title="Photography Workshop">
 
                 <div class="event-date">
                     OCT 5
@@ -233,6 +323,10 @@
                     from experienced photographers.
                 </p>
 
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
                 <a href="dashboard.html"
                    class="btn">
                     Register
@@ -240,9 +334,45 @@
 
             </div>
 
+
         </div>
 
+        <p id="noResults" class="no-results">
+            No events found.
+        </p>
+
     </section>
+
+
+    <!-- Event Details Popup -->
+
+    <div id="detailsModal" class="details-modal">
+
+        <div class="details-box">
+
+            <button id="closeModal"
+                    class="close-btn">
+                ×
+            </button>
+
+            <h2 id="modalTitle">
+                Event Details
+            </h2>
+
+            <p id="modalCategory"></p>
+
+            <p id="modalDate"></p>
+
+            <p id="modalDescription"></p>
+
+            <a href="dashboard.html"
+               class="btn">
+                Register for Event
+            </a>
+
+        </div>
+
+    </div>
 
 
     <footer>
@@ -253,6 +383,11 @@
         </p>
 
     </footer>
+
+
+    <!-- Member 3 JavaScript -->
+
+    <script src="js/events.js"></script>
 
 </body>
 
