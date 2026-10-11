@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,137 +28,99 @@
         </div>
     </nav>
 
-
     <!-- Dashboard Header -->
     <section class="dashboard-header">
-
         <h1>Student Dashboard</h1>
-
-        <p>
-            Register for campus events and manage your registrations.
-        </p>
-
+        <p>Register for campus events and manage your registrations.</p>
     </section>
-
 
     <!-- Registration Section -->
     <section class="registration-section">
-
         <div class="registration-card">
 
             <h2>Register for an Event</h2>
 
             <p class="form-description">
-                Enter your details and select an event to register.
+                Enter valid student details to register for a campus event.
+                All fields are required.
             </p>
 
-            <form id="registrationForm">
+            <form id="registrationForm" novalidate>
 
                 <div class="form-group">
-
-                    <label for="studentName">
-                        Student Name
-                    </label>
-
+                    <label for="studentName">Student Name</label>
                     <input
                         type="text"
                         id="studentName"
-                        placeholder="Enter your name"
+                        name="studentName"
+                        placeholder="Enter your full name"
+                        minlength="2"
+                        maxlength="60"
+                        autocomplete="name"
                         required
                     >
-
+                    <small id="nameHint" class="field-hint">
+                        2–60 characters
+                    </small>
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="studentEmail">
-                        Email
-                    </label>
-
+                    <label for="studentEmail">Email Address</label>
                     <input
                         type="email"
                         id="studentEmail"
-                        placeholder="Enter your email"
+                        name="studentEmail"
+                        placeholder="student@example.com"
+                        autocomplete="email"
                         required
                     >
-
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="rollNumber">
-                        Roll Number
-                    </label>
-
+                    <label for="rollNumber">Roll Number</label>
                     <input
                         type="text"
                         id="rollNumber"
+                        name="rollNumber"
                         placeholder="Enter your roll number"
+                        minlength="2"
+                        maxlength="20"
+                        autocomplete="off"
                         required
                     >
-
                 </div>
-
 
                 <div class="form-group">
-
-                    <label for="eventSelect">
-                        Select Event
-                    </label>
-
-                    <select id="eventSelect" required>
-
-                        <option value="">
-                            -- Select an Event --
-                        </option>
-
-                        <option value="CodeSprint 2026">
-                            CodeSprint 2026
-                        </option>
-
-                        <option value="Campus Beats">
-                            Campus Beats
-                        </option>
-
-                        <option value="AI Future Lab">
-                            AI Future Lab
-                        </option>
-
-                        <option value="Inter College Cricket">
-                            Inter College Cricket
-                        </option>
-
-                        <option value="Web Development Bootcamp">
-                            Web Development Bootcamp
-                        </option>
-
-                        <option value="Photography Workshop">
-                            Photography Workshop
-                        </option>
-
+                    <label for="eventSelect">Select Event</label>
+                    <select id="eventSelect" name="eventSelect" required>
+                        <option value="">-- Select an Event --</option>
+                        <option value="CodeSprint 2026">CodeSprint 2026</option>
+                        <option value="Campus Beats">Campus Beats</option>
+                        <option value="AI Future Lab">AI Future Lab</option>
+                        <option value="Inter College Cricket">Inter College Cricket</option>
+                        <option value="Web Development Bootcamp">Web Development Bootcamp</option>
+                        <option value="Photography Workshop">Photography Workshop</option>
                     </select>
-
                 </div>
 
-
                 <button type="submit" class="btn">
-                    Register
+                    Register for Event
                 </button>
 
             </form>
 
-            <p id="registrationMessage" class="registration-message"></p>
+            <p
+                id="registrationMessage"
+                class="registration-message"
+                role="status"
+                aria-live="polite"
+            ></p>
 
         </div>
-
     </section>
 
-
-    <!-- Statistics -->
+    <!-- Registration Statistics -->
     <section class="statistics-section">
-
         <h2>Registration Statistics</h2>
 
         <div class="statistics-grid">
@@ -178,42 +141,33 @@
             </div>
 
         </div>
-
     </section>
-
 
     <!-- Registered Events -->
     <section class="registered-section">
-
         <h2>My Registered Events</h2>
 
         <p class="section-text">
-            Events you have registered for will appear here.
+            Your registrations will appear here.
         </p>
 
-        <div id="registeredEvents" class="registered-events">
-
-        </div>
+        <div
+            id="registeredEvents"
+            class="registered-events"
+            aria-live="polite"
+        ></div>
 
         <p id="emptyMessage" class="empty-message">
             No registrations yet.
         </p>
-
     </section>
-
 
     <!-- Footer -->
     <footer>
-
-        <p>
-            © 2026 CampusConnect. All rights reserved.
-        </p>
-
+        <p>© 2026 CampusConnect. All rights reserved.</p>
     </footer>
-
 
     <script src="js/dashboard.js"></script>
 
 </body>
-
 </html>

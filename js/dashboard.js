@@ -1,325 +1,293 @@
-// =========================================
-// MEMBER 4 - REGISTRATION & DASHBOARD
-// =========================================
 
+ // =========================================
+ // MEMBER 4 - REGISTRATION & DASHBOARD
+ // Enhanced validation and safe rendering
+ // =========================================
 
-// Get elements
+const registrationForm = document.getElementById("registrationForm");
+const registrationMessage = document.getElementById("registrationMessage");
+const registeredEvents = document.getElementById("registeredEvents");
+const emptyMessage = document.getElementById("emptyMessage");
 
-const registrationForm =
-    document.getElementById("registrationForm");
+const totalRegistrations = document.getElementById("totalRegistrations");
+const uniqueEvents = document.getElementById("uniqueEvents");
+const studentCount = document.getElementById("studentCount");
 
-const registrationMessage =
-    document.getElementById("registrationMessage");
+const studentNameInput = document.getElementById("studentName");
+const studentEmailInput = document.getElementById("studentEmail");
+const rollNumberInput = document.getElementById("rollNumber");
+const eventSelect = document.getElementById("eventSelect");
+const nameHint = document.getElementById("nameHint");
 
-const registeredEvents =
-    document.getElementById("registeredEvents");
+const STORAGE_KEY = "campusConnectRegistrations";
 
-const emptyMessage =
-    document.getElementById("emptyMessage");
-
-const totalRegistrations =
-    document.getElementById("totalRegistrations");
-
-const uniqueEvents =
-    document.getElementById("uniqueEvents");
-
-const studentCount =
-    document.getElementById("studentCount");
-
+const allowedEvents = [
+    "CodeSprint 2026",
+    "Campus Beats",
+    "AI Future Lab",
+    "Inter College Cricket",
+    "Web Development Bootcamp",
+    "Photography Workshop"
+];
 
 // =========================================
 // LOCAL STORAGE
 // =========================================
 
-// Get existing registrations
-
 function getRegistrations() {
+    try {
+        const savedData = localStorage.getItem(STORAGE_KEY);
 
-    const registrations =
-        localStorage.getItem("campusConnectRegistrations");
+        if (!savedData) {
+            return [];
+        }
 
-    if (registrations) {
+        const registrations = JSON.parse(savedData);
 
-        return JSON.parse(registrations);
-
+        return Array.isArray(registrations) ? registrations : [];
+    } catch (error) {
+        console.error("Could not read registrations:", error);
+        showMessage("Unable to load saved registrations.", "red");
+        return [];
     }
-
-    return [];
 }
-
-
-// Save registrations
 
 function saveRegistrations(registrations) {
-
-    localStorage.setItem(
-        "campusConnectRegistrations",
-        JSON.stringify(registrations)
-    );
-
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(registrations));
+        return true;
+    } catch (error) {
+        console.error("Could not save registrations:", error);
+        showMessage("Unable to save. Check your browser storage.", "red");
+        return false;
+    }
 }
 
+// =========================================
+// FORM FEEDBACK
+// =========================================
+
+function showMessage(message, color) {
+    registrationMessage.textContent = message;
+    registrationMessage.style.color = color;
+}
+
+function clearMessage() {
+    registrationMessage.textContent = "";
+}
+
+[studentNameInput, studentEmailInput, rollNumberInput, eventSelect]
+    .forEach(function (input) {
+        input.addEventListener("input", clearMessage);
+        input.addEventListener("change", clearMessage);
+    });
+
+// Live name-length guidance
+studentNameInput.addEventListener("input", function () {
+    const remaining = 60 - studentNameInput.value.length;
+
+    nameHint.textContent = remaining + " characters remaining";
+});
+
+// =========================================
+// VALIDATE FORM
+// =========================================
+
+function validateRegistration(name, email, rollNumber, eventName) {
+    if (name.length < 2 || name.length > 60) {
+        showMessage("Name must contain between 2 and 60 characters.", "red");
+        studentNameInput.focus();
+        return false;
+    }
+
+    if (!/^[\p{L}\p{M}][\p{L}\p{M}\s.'’-]*$/u.test(name)) {
+        showMessage("Enter a valid name using letters and normal name punctuation.", "red");
+        studentNameInput.focus();
+        return false;
+    }
+
+    if (!studentEmailInput.checkValidity() || email.length === 0) {
+        showMessage("Please enter a valid email address.", "red");
+        studentEmailInput.focus();
+        return false;
+    }
+
+    if (rollNumber.length < 2 || rollNumber.length > 20) {
+        showMessage("Roll number must contain 2–20 characters.", "red");
+        rollNumberInput.focus();
+        return false;
+    }
+
+    if (!/^[a-zA-Z0-9/-]+$/.test(rollNumber)) {
+        showMessage("Roll number may contain letters, numbers, hyphens or slashes only.", "red");
+        rollNumberInput.focus();
+        return false;
+    }
+
+    if (!allowedEvents.includes(eventName)) {
+        showMessage("Please select a valid event.", "red");
+        eventSelect.focus();
+        return false;
+    }
+
+    return true;
+}
 
 // =========================================
 // REGISTER STUDENT
 // =========================================
 
-registrationForm.addEventListener(
-    "submit",
-    function(event) {
+registrationForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    clearMessage();
 
-        event.preventDefault();
+    const studentName = studentNameInput.value.trim();
+    const studentEmail = studentEmailInput.value.trim().toLowerCase();
+    const rollNumber = rollNumberInput.value.trim();
+    const eventName = eventSelect.value;
 
-
-        const studentName =
-            document.getElementById("studentName").value.trim();
-
-        const studentEmail =
-            document.getElementById("studentEmail").value.trim();
-
-        const rollNumber =
-            document.getElementById("rollNumber").value.trim();
-
-        const eventName =
-            document.getElementById("eventSelect").value;
-
-
-        let registrations =
-            getRegistrations();
-
-
-        // Check duplicate registration
-
-        const alreadyRegistered =
-            registrations.some(function(registration) {
-
-                return (
-                    registration.studentEmail === studentEmail &&
-                    registration.eventName === eventName
-                );
-
-            });
-
-
-        if (alreadyRegistered) {
-
-            registrationMessage.textContent =
-                "You are already registered for this event.";
-
-            registrationMessage.style.color = "red";
-
-            return;
-
-        }
-
-
-        // Create registration object
-
-        const registration = {
-
-            id: Date.now(),
-
-            studentName: studentName,
-
-            studentEmail: studentEmail,
-
-            rollNumber: rollNumber,
-
-            eventName: eventName,
-
-            registrationDate:
-                new Date().toLocaleDateString()
-
-        };
-
-
-        // Add registration
-
-        registrations.push(registration);
-
-
-        // Save to LocalStorage
-
-        saveRegistrations(registrations);
-
-
-        // Show success message
-
-        registrationMessage.textContent =
-            "Registration successful!";
-
-        registrationMessage.style.color = "green";
-
-
-        // Reset form
-
-        registrationForm.reset();
-
-
-        // Refresh dashboard
-
-        displayRegistrations();
-
+    if (!validateRegistration(studentName, studentEmail, rollNumber, eventName)) {
+        return;
     }
-);
 
+    const registrations = getRegistrations();
+
+    const alreadyRegistered = registrations.some(function (registration) {
+        return (
+            String(registration.studentEmail || "").toLowerCase() === studentEmail &&
+            registration.eventName === eventName
+        );
+    });
+
+    if (alreadyRegistered) {
+        showMessage("This email is already registered for this event.", "red");
+        return;
+    }
+
+    const registration = {
+        id: Date.now(),
+        studentName: studentName,
+        studentEmail: studentEmail,
+        rollNumber: rollNumber,
+        eventName: eventName,
+        registrationDate: new Date().toLocaleDateString()
+    };
+
+    registrations.push(registration);
+
+    if (!saveRegistrations(registrations)) {
+        return;
+    }
+
+    showMessage("Registration successful!", "green");
+
+    registrationForm.reset();
+    nameHint.textContent = "2–60 characters";
+
+    displayRegistrations();
+});
 
 // =========================================
 // DISPLAY REGISTERED EVENTS
 // =========================================
 
-function displayRegistrations() {
+function createTextElement(tag, label, value) {
+    const element = document.createElement(tag);
 
-    const registrations =
-        getRegistrations();
-
-
-    registeredEvents.innerHTML = "";
-
-
-    if (registrations.length === 0) {
-
-        emptyMessage.style.display = "block";
-
-    } else {
-
-        emptyMessage.style.display = "none";
-
-
-        registrations.forEach(
-            function(registration) {
-
-                const card =
-                    document.createElement("div");
-
-                card.className =
-                    "registered-card";
-
-
-                card.innerHTML = `
-
-                    <h3>${registration.eventName}</h3>
-
-                    <p>
-                        <strong>Student:</strong>
-                        ${registration.studentName}
-                    </p>
-
-                    <p>
-                        <strong>Email:</strong>
-                        ${registration.studentEmail}
-                    </p>
-
-                    <p>
-                        <strong>Roll Number:</strong>
-                        ${registration.rollNumber}
-                    </p>
-
-                    <p>
-                        <strong>Registered On:</strong>
-                        ${registration.registrationDate}
-                    </p>
-
-                    <button
-                        class="unregister-btn"
-                        onclick="unregisterEvent(${registration.id})"
-                    >
-                        Unregister
-                    </button>
-
-                `;
-
-
-                registeredEvents.appendChild(card);
-
-            }
-        );
-
+    if (label) {
+        const strong = document.createElement("strong");
+        strong.textContent = label + " ";
+        element.appendChild(strong);
     }
 
+    element.appendChild(document.createTextNode(String(value ?? "")));
 
-    updateStatistics(registrations);
-
+    return element;
 }
 
+function displayRegistrations() {
+    const registrations = getRegistrations();
+
+    registeredEvents.replaceChildren();
+
+    emptyMessage.style.display =
+        registrations.length === 0 ? "block" : "none";
+
+    registrations.forEach(function (registration) {
+        const card = document.createElement("div");
+        card.className = "registered-card";
+
+        const title = document.createElement("h3");
+        title.textContent = registration.eventName || "Unnamed Event";
+        card.appendChild(title);
+
+        card.appendChild(createTextElement("p", "Student:", registration.studentName));
+        card.appendChild(createTextElement("p", "Email:", registration.studentEmail));
+        card.appendChild(createTextElement("p", "Roll Number:", registration.rollNumber));
+        card.appendChild(createTextElement("p", "Registered On:", registration.registrationDate));
+
+        const unregisterButton = document.createElement("button");
+        unregisterButton.type = "button";
+        unregisterButton.className = "unregister-btn";
+        unregisterButton.textContent = "Unregister";
+
+        unregisterButton.addEventListener("click", function () {
+            unregisterEvent(registration.id);
+        });
+
+        card.appendChild(unregisterButton);
+        registeredEvents.appendChild(card);
+    });
+
+    updateStatistics(registrations);
+}
 
 // =========================================
 // UNREGISTER EVENT
 // =========================================
 
 function unregisterEvent(id) {
+    const registrations = getRegistrations();
 
-    let registrations =
-        getRegistrations();
+    const updatedRegistrations = registrations.filter(function (registration) {
+        return registration.id !== id;
+    });
 
+    if (updatedRegistrations.length === registrations.length) {
+        return;
+    }
 
-    registrations =
-        registrations.filter(
-            function(registration) {
+    if (!saveRegistrations(updatedRegistrations)) {
+        return;
+    }
 
-                return registration.id !== id;
-
-            }
-        );
-
-
-    saveRegistrations(registrations);
-
-
+    showMessage("Registration removed successfully.", "green");
     displayRegistrations();
-
 }
-
 
 // =========================================
 // UPDATE STATISTICS
 // =========================================
 
 function updateStatistics(registrations) {
+    totalRegistrations.textContent = registrations.length;
 
-    // Total registrations
+    const events = new Set(
+        registrations.map(function (registration) {
+            return registration.eventName;
+        })
+    );
 
-    totalRegistrations.textContent =
-        registrations.length;
+    uniqueEvents.textContent = events.size;
 
+    const students = new Set(
+        registrations.map(function (registration) {
+            return String(registration.studentEmail || "").toLowerCase();
+        })
+    );
 
-    // Unique events
-
-    const events =
-        new Set(
-            registrations.map(
-                function(registration) {
-
-                    return registration.eventName;
-
-                }
-            )
-        );
-
-
-    uniqueEvents.textContent =
-        events.size;
-
-
-    // Unique students
-
-    const students =
-        new Set(
-            registrations.map(
-                function(registration) {
-
-                    return registration.studentEmail;
-
-                }
-            )
-        );
-
-
-    studentCount.textContent =
-        students.size;
-
+    studentCount.textContent = students.size;
 }
-
 
 // =========================================
 // INITIAL LOAD
