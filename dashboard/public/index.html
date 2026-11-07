@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard - CampusConnect</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">CampusConnect</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/events/">Events</a>
+            <a href="/register/">Register</a>
+            <a href="/dashboard/">Dashboard</a>
+        </div>
+    </nav>
+
+    <section class="dashboard-header">
+        <h1>Student Dashboard</h1>
+        <p>View and manage your campus event registrations.</p>
+    </section>
+
+    <!-- Registration Statistics -->
+    <section class="statistics-section">
+        <h2>Registration Statistics</h2>
+
+        <div class="statistics-grid">
+
+            <div class="stat-card">
+                <h3 id="totalRegistrations">0</h3>
+                <p>Total Registrations</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="uniqueEvents">0</h3>
+                <p>Events Registered</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="studentCount">0</h3>
+                <p>Students</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Registered Events -->
+    <section class="registered-section">
+        <h2>My Registered Events</h2>
+
+        <p class="section-text">
+            Your registrations will appear here.
+        </p>
+
+        <div
+            id="registeredEvents"
+            class="registered-events"
+            aria-live="polite">
+        </div>
+
+        <p id="emptyMessage" class="empty-message">
+            No registrations yet.
+        </p>
+    </section>
+
+    <footer>
+        <p>© 2026 CampusConnect. All rights reserved.</p>
+    </footer>
+
+    <script src="js/dashboard.js"></script>
+
+</body>
+</html>

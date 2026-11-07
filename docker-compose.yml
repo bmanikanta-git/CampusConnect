@@ -1,0 +1,42 @@
+services:
+  home:
+    build:
+      context: ./home
+    image: campusconnect-home:latest
+    container_name: cc-home
+    restart: unless-stopped
+
+  events:
+    build:
+      context: ./events
+    image: campusconnect-events:latest
+    container_name: cc-events
+    restart: unless-stopped
+
+  registration:
+    build:
+      context: ./registration
+    image: campusconnect-registration:latest
+    container_name: cc-registration
+    restart: unless-stopped
+
+  dashboard:
+    build:
+      context: ./dashboard
+    image: campusconnect-dashboard:latest
+    container_name: cc-dashboard
+    restart: unless-stopped
+
+  gateway:
+    image: nginx:alpine
+    container_name: cc-gateway
+    ports:
+      - "8090:80"
+    volumes:
+      - ./gateway/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - home
+      - events
+      - registration
+      - dashboard
+    restart: unless-stopped
