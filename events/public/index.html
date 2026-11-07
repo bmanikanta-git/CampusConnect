@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Events</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CampusConnect
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/events/">
+                Events
+            </a>
+
+            <a href="/register/">
+                Dashboard
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Event Header -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Campus Events
+            </h1>
+
+            <p>
+                Explore upcoming events
+                happening on campus.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Search and Filter -->
+
+    <section class="event-controls">
+
+        <h2>
+            Find an Event
+        </h2>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search events..."
+        >
+
+        <div class="filter-buttons">
+
+            <button class="filter-btn active"
+                    data-category="All">
+                All
+            </button>
+
+            <button class="filter-btn"
+                    data-category="Technical">
+                Technical
+            </button>
+
+            <button class="filter-btn"
+                    data-category="Cultural">
+                Cultural
+            </button>
+
+            <button class="filter-btn"
+                    data-category="Sports">
+                Sports
+            </button>
+
+            <button class="filter-btn"
+                    data-category="Workshop">
+                Workshop
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- Event List -->
+
+    <section class="events-section">
+
+        <h2>
+            Upcoming Events
+        </h2>
+
+        <p class="section-text">
+            Search and explore campus activities.
+        </p>
+
+
+        <div class="event-grid" id="eventGrid">
+
+
+            <!-- Event 1 -->
+
+            <div class="event-card"
+                 data-category="Technical"
+                 data-title="CodeSprint 2026">
+
+                <div class="event-date">
+                    SEPT 15
+                </div>
+
+                <h3>
+                    CodeSprint 2026
+                </h3>
+
+                <p class="event-category">
+                    💻 Technical
+                </p>
+
+                <p>
+                    Coding challenge for students.
+                </p>
+
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
+                <a href="/register/"
+                   class="btn">
+                    Register
+                </a>
+
+            </div>
+
+
+            <!-- Event 2 -->
+
+            <div class="event-card"
+                 data-category="Cultural"
+                 data-title="Campus Beats">
+
+                <div class="event-date">
+                    SEPT 20
+                </div>
+
+                <h3>
+                    Campus Beats
+                </h3>
+
+                <p class="event-category">
+                    🎭 Cultural
+                </p>
+
+                <p>
+                    Music, dance and cultural
+                    performances.
+                </p>
+
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
+                <a href="/register/"
+                   class="btn">
+                    Register
+                </a>
+
+            </div>
+
+
+            <!-- Event 3 -->
+
+            <div class="event-card"
+                 data-category="Workshop"
+                 data-title="AI Future Lab">
+
+                <div class="event-date">
+                    SEPT 25
+                </div>
+
+                <h3>
+                    AI Future Lab
+                </h3>
+
+                <p class="event-category">
+                    📚 Workshop
+                </p>
+
+                <p>
+                    Introduction to AI and
+                    emerging technologies.
+                </p>
+
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
+                <a href="/register/"
+                   class="btn">
+                    Register
+                </a>
+
+            </div>
+
+
+            <!-- Event 4 -->
+
+            <div class="event-card"
+                 data-category="Sports"
+                 data-title="Inter College Cricket">
+
+                <div class="event-date">
+                    SEPT 28
+                </div>
+
+                <h3>
+                    Inter College Cricket
+                </h3>
+
+                <p class="event-category">
+                    🏆 Sports
+                </p>
+
+                <p>
+                    Inter-college cricket
+                    tournament.
+                </p>
+
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
+                <a href="/register/"
+                   class="btn">
+                    Register
+                </a>
+
+            </div>
+
+
+            <!-- Event 5 -->
+
+            <div class="event-card"
+                 data-category="Technical"
+                 data-title="Web Development Bootcamp">
+
+                <div class="event-date">
+                    OCT 2
+                </div>
+
+                <h3>
+                    Web Development Bootcamp
+                </h3>
+
+                <p class="event-category">
+                    💻 Technical
+                </p>
+
+                <p>
+                    Learn the fundamentals of
+                    modern web development.
+                </p>
+
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
+                <a href="/register/"
+                   class="btn">
+                    Register
+                </a>
+
+            </div>
+
+
+            <!-- Event 6 -->
+
+            <div class="event-card"
+                 data-category="Workshop"
+                 data-title="Photography Workshop">
+
+                <div class="event-date">
+                    OCT 5
+                </div>
+
+                <h3>
+                    Photography Workshop
+                </h3>
+
+                <p class="event-category">
+                    📚 Workshop
+                </p>
+
+                <p>
+                    Learn photography techniques
+                    from experienced photographers.
+                </p>
+
+                <button class="btn details-btn">
+                    View Details
+                </button>
+
+                <a href="/register/"
+                   class="btn">
+                    Register
+                </a>
+
+            </div>
+
+
+        </div>
+
+        <p id="noResults" class="no-results">
+            No events found.
+        </p>
+
+    </section>
+
+
+    <!-- Event Details Popup -->
+
+    <div id="detailsModal" class="details-modal">
+
+        <div class="details-box">
+
+            <button id="closeModal"
+                    class="close-btn">
+                ×
+            </button>
+
+            <h2 id="modalTitle">
+                Event Details
+            </h2>
+
+            <p id="modalCategory"></p>
+
+            <p id="modalDate"></p>
+
+            <p id="modalDescription"></p>
+
+            <a href="/register/"
+               class="btn">
+                Register for Event
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        <p>
+            © 2026 CampusConnect.
+            All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- Member 3 JavaScript -->
+
+    <script src="js/events.js"></script>
+
+</body>
+
+</html>
