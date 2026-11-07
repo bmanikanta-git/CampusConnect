@@ -46,58 +46,39 @@ let selectedCategory = "All";
 // =========================================
 // SEARCH + FILTER
 // =========================================
-
 function filterEvents() {
-
-    const searchText =
-        searchInput.value.toLowerCase().trim();
-
+    const searchText = searchInput.value.toLowerCase().trim();
     let visibleEvents = 0;
 
-
     eventCards.forEach(function(card) {
+        const title = card.dataset.title.toLowerCase();
+        const category = card.dataset.category.toLowerCase();
 
-        const title =
-            card.dataset.title.toLowerCase();
-
-        const category =
-            card.dataset.category;
-
+        const description = card.querySelector(
+            "p:not(.event-category)"
+        ).textContent.toLowerCase();
 
         const matchesSearch =
-            title.includes(searchText);
+            title.includes(searchText) ||
+            category.includes(searchText) ||
+            description.includes(searchText);
 
         const matchesCategory =
             selectedCategory === "All" ||
-            category === selectedCategory;
-
+            card.dataset.category === selectedCategory;
 
         if (matchesSearch && matchesCategory) {
-
             card.style.display = "block";
-
             visibleEvents++;
-
         } else {
-
             card.style.display = "none";
-
         }
-
     });
 
-
-    if (visibleEvents === 0) {
-
-        noResults.style.display = "block";
-
-    } else {
-
-        noResults.style.display = "none";
-
-    }
-
+    noResults.style.display =
+        visibleEvents === 0 ? "block" : "none";
 }
+
 
 
 // Search while typing
@@ -206,6 +187,14 @@ closeModal.addEventListener(
     }
 );
 
+document.addEventListener("keydown", function(event) {
+    if (
+        event.key === "Escape" &&
+        detailsModal.style.display === "flex"
+    ) {
+        detailsModal.style.display = "none";
+    }
+});
 
 // Close popup when clicking outside
 
